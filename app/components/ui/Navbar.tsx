@@ -29,10 +29,12 @@ function Navbar() {
 
   const navItems = [
     { label: 'Home', href: '/' },
-    { label: 'Pokemon Type', href: '/pokemon/type' }
+    { label: 'Pokemon Type', href: '/pokemon/type?name=normal' }
   ]
 
   const [drawerOpen, setDrawerOpen] = useState(false)
+
+  console.log(pathname)
 
   const toggleDrawer = (open: boolean) => () => {
     setDrawerOpen(open)
@@ -76,24 +78,25 @@ function Navbar() {
           {/* Desktop Navigation */}
           {!isMobile && (
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-              {navItems.map((item) => (
-                <Link href={item.href} key={item.href} passHref>
-                  <Button
-                    sx={{
-                      fontWeight: pathname === item.href ? 'bold' : 'normal',
-                      color:
-                        pathname === item.href
-                          ? 'primary.main'
-                          : 'text.primary',
-                      borderBottom:
-                        pathname === item.href ? '2px solid #facc15' : 'none',
-                      borderRadius: 0
-                    }}
-                  >
-                    {item.label}
-                  </Button>
-                </Link>
-              ))}
+              {navItems.map((item) => {
+                const itemPath = item.href.split('?')[0]
+                const isActive = pathname === itemPath
+
+                return (
+                  <Link href={item.href} key={item.href} passHref>
+                    <Button
+                      sx={{
+                        fontWeight: isActive ? 'bold' : 'normal',
+                        color: isActive ? 'primary.main' : 'text.primary',
+                        borderBottom: isActive ? '2px solid #facc15' : 'none',
+                        borderRadius: 0
+                      }}
+                    >
+                      {item.label}
+                    </Button>
+                  </Link>
+                )
+              })}
             </Box>
           )}
 
