@@ -2,18 +2,11 @@
 
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
-
-type PokemonBasic = {
-  name: string
-  url: string
-}
-
-type PokemonDetailed = {
-  id: number
-  name: string
-  types: string[]
-  image: string
-}
+import {
+  PokemonBasic,
+  PokemonDetailed,
+  PokemonTypeResponse
+} from '@/app/types/detail'
 
 const getPokemonDetails = async (url: string): Promise<PokemonDetailed> => {
   const res = await axios.get(url)
@@ -23,7 +16,9 @@ const getPokemonDetails = async (url: string): Promise<PokemonDetailed> => {
     id: data.id,
     name: data.name,
     image: data.sprites.other['official-artwork'].front_default,
-    types: data.types.map((t: any) => t.type.name)
+    types: data.types.map(
+      (t: { slot: number; type: { name: string } }) => t.type.name
+    )
   }
 }
 
@@ -35,10 +30,10 @@ export const usePokemonsByTypeWithDetails = (
   return useQuery({
     queryKey: ['pokemons-by-type', type, offset, limit],
     queryFn: async () => {
-      const res = await axios.get(`https://pokeapi.co/api/v2/type/${type}`)
-      const allPokemon: PokemonBasic[] = res.data.pokemon.map(
-        (p: any) => p.pokemon
+      const res = await axios.get<PokemonTypeResponse>(
+        `https://pokeapi.co/api/v2/type/${type}`
       )
+      const allPokemon: PokemonBasic[] = res.data.pokemon.map((p) => p.pokemon)
 
       const paginated = allPokemon.slice(offset, offset + limit)
 
