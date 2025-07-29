@@ -1,3 +1,5 @@
+'use client'
+
 import { useState } from 'react'
 export const usePagination = (defaultLimit = 20) => {
   const [page, setPage] = useState(1)
