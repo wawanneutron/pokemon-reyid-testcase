@@ -30,7 +30,12 @@ export default function WelcomeModal() {
   return (
     <Dialog
       open={open}
-      onClose={handleClose}
+      disableEscapeKeyDown
+      onClose={(event, reason) => {
+        if (reason !== 'backdropClick') {
+          handleClose()
+        }
+      }}
       sx={{ backgroundColor: 'rgba(0, 0, 0, 0.4)' }}
     >
       <DialogTitle>Welcome to Pokédex! 👋👋</DialogTitle>
