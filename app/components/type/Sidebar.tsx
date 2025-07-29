@@ -16,6 +16,7 @@ interface Type {
 
 interface SidebarProps {
   types: Type[]
+  searchName?: string
   onTypeSelected: (typeName: string) => void
 }
 
