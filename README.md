@@ -4,7 +4,7 @@ A modern Pokédex web app built using **Next.js**, **React**, **Material UI**, a
 
 ## 🚀 Live Demo
 
-👉 [Deployment Link](https://your-deployment-link.vercel.app)
+👉 [Deployment Link](https://pokemon-reyid.netlify.app)
 
 ---
 
