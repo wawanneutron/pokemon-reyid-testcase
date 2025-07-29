@@ -30,7 +30,6 @@ export default function PokemonListPage({ searchParams }: Props) {
 
   const [selectedTypeIndex, setSelectedTypeIndex] = useState(0)
 
-  // Sinkronisasi index berdasarkan query param
   useEffect(() => {
     if (!typeName || types.length === 0) return
 
@@ -38,7 +37,6 @@ export default function PokemonListPage({ searchParams }: Props) {
     if (index !== -1) setSelectedTypeIndex(index)
   }, [typeName, types])
 
-  // Gunakan langsung typeName jika valid
   const selectedTypeName =
     typeName && types.some((t) => t.name === typeName)
       ? typeName
@@ -52,7 +50,6 @@ export default function PokemonListPage({ searchParams }: Props) {
 
   const handleSelectType = (index: number) => {
     setSelectedTypeIndex(index)
-    // TODO: Fetch Pokémon by type[index].name and set list
   }
 
   return (
