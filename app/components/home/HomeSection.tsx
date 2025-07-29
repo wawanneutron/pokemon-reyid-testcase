@@ -56,7 +56,7 @@ function HomeSection() {
             </Typography>
             <Typography variant="subtitle1" color="text.secondary">
               All Generation totaling <br />
-              <strong> {formatNumberWithDot(data?.total)} </strong> Pokémon
+              <strong> {formatNumberWithDot(data?.total || 0)} </strong> Pokémon
             </Typography>
           </Box>
 
