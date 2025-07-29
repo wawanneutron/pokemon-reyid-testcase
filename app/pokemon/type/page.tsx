@@ -4,65 +4,23 @@ import AccentTypeBackground from '@/app/components/ui/AccentTypeBackground'
 import { usePokemonsByTypeWithDetails } from '@/app/hooks/usePokemonsByTypeWithDetails'
 import { usePokemonTypes } from '@/app/hooks/usePokemonTypes'
 import { typeColors } from '@/app/types'
-import {
-  Box,
-  Typography,
-  Stack,
-  Chip,
-  List,
-  ListItemButton,
-  ListItemText,
-  Paper
-} from '@mui/material'
+import { Box, Typography, Stack, Chip, Paper } from '@mui/material'
 import { usePagination } from '@/app/hooks/usePagination'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import Image from 'next/image'
-import { useRouter, usePathname } from 'next/navigation'
+import Sidebar from '@/app/components/type/Sidebar'
 
-interface Props {
-  searchParams: { name?: string }
-}
-
-export default function PokemonListPage({ searchParams }: Props) {
-  const typeName = searchParams.name
-
+export default function PokemonListPage() {
   const { data: types = [] } = usePokemonTypes()
   const { offset, limit } = usePagination()
 
-  const [selectedTypeIndex, setSelectedTypeIndex] = useState(0)
-
-  useEffect(() => {
-    if (types.length === 0) return
-
-    if (typeof typeName === 'string') {
-      const index = types.findIndex(
-        (t: { name: string }) => t.name === typeName
-      )
-      setSelectedTypeIndex(index !== -1 ? index : 0)
-    } else {
-      setSelectedTypeIndex(0)
-    }
-  }, [typeName, types])
-
-  const selectedTypeName = types[selectedTypeIndex]?.name || 'normal'
+  const [selectedTypeName, setSelectedTypeName] = useState<string>('normal')
 
   const { data: pokemonLists } = usePokemonsByTypeWithDetails(
     selectedTypeName,
     offset,
     limit
   )
-
-  const router = useRouter()
-  const pathname = usePathname()
-
-  const handleSelectType = (index: number) => {
-    setSelectedTypeIndex(index)
-
-    const selected = types[index]?.name
-    if (selected) {
-      router.push(`${pathname}?name=${selected}`)
-    }
-  }
 
   return (
     <Box
@@ -78,31 +36,7 @@ export default function PokemonListPage({ searchParams }: Props) {
       <AccentTypeBackground />
 
       {/* Sidebar */}
-      <Box
-        sx={{
-          width: 240,
-          p: 4,
-          zIndex: 1,
-          overflowY: 'auto',
-          maxHeight: '60vh'
-        }}
-      >
-        <Typography variant="subtitle1" fontWeight="bold" gutterBottom>
-          Pokemon Type
-        </Typography>
-        <List dense disablePadding>
-          {types.map((type: { name: string }, idx: number) => (
-            <ListItemButton
-              key={type.name}
-              selected={selectedTypeIndex === idx}
-              onClick={() => handleSelectType(idx)}
-              sx={{ borderRadius: 1 }}
-            >
-              <ListItemText primary={type.name} />
-            </ListItemButton>
-          ))}
-        </List>
-      </Box>
+      <Sidebar types={types} onTypeSelected={setSelectedTypeName} />
 
       {/* Content */}
       <Box sx={{ flexGrow: 1, p: 4, zIndex: 1 }}>
@@ -196,18 +130,6 @@ export default function PokemonListPage({ searchParams }: Props) {
             )}
           </Stack>
         </Paper>
-        {/* <Box mt={6} display="flex" justifyContent="center">
-          <Pagination
-            page={page}
-            perPage={limit}
-            total={data?.total || 0}
-            onPageChange={(newPage) => setPage(newPage)}
-            onPerPageChange={(newPerPage) => {
-              setLimit(newPerPage)
-              setPage(1) // reset ke halaman 1 saat ubah perPage
-            }}
-          />
-        </Box> */}
       </Box>
     </Box>
   )
