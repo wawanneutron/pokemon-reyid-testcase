@@ -82,3 +82,11 @@ yarn dev
 | Modal + session handling     | 1 hour         |
 | Pagination + optimization    | 2 hours        |
 | **Total**                    | **\~12.5 hrs** |
+
+## 📬 Contact
+
+- 📧 Email: hellowawansetiawan@gmail.com
+
+- 💬 WhatsApp: +62 877-3269-7337
+
+- 💼 LinkedIn: [linkedin.com/in/wawan setiawan](https://www.linkedin.com/in/wawan-setiawan-84934a206/)
