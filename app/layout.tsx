@@ -23,7 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={poppins.className} style={{ margin: 0 }}>
+      <body className={poppins.className}>
         <Navbar />
         <ThemeRegistry>
           <ReactQueryProvider>{children}</ReactQueryProvider>
