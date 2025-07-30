@@ -8,9 +8,11 @@ import { useEffect, useState } from 'react'
 import { useRouter, usePathname, useSearchParams } from 'next/navigation'
 import Sidebar from './Sidebar'
 import TableContent from './TableContent'
+import TableContentSkeleton from './TableContentSkeleton'
+import SidebarSkeleton from './SidebarSkeleton'
 
 function ClientPokemonType() {
-  const { data: types = [] } = usePokemonTypes()
+  const { data: types = [], isLoading: isTypesLoading } = usePokemonTypes()
   const [selectedTypeIndex, setSelectedTypeIndex] = useState<number>(0)
 
   const [page, setPage] = useState<number>(1)
@@ -26,11 +28,8 @@ function ClientPokemonType() {
   }, [typeName, types])
 
   const selectedTypeName = types[selectedTypeIndex]?.name || 'normal'
-  const { data: pokemonLists } = usePokemonsByTypeWithDetails(
-    selectedTypeName,
-    page,
-    perPage
-  )
+  const { data: pokemonLists, isLoading: isPokemonLoading } =
+    usePokemonsByTypeWithDetails(selectedTypeName, page, perPage)
 
   const router = useRouter()
   const pathname = usePathname()
@@ -60,25 +59,35 @@ function ClientPokemonType() {
     >
       <AccentTypeBackground colorByType={selectedTypeName} />
 
-      <Sidebar
-        types={types}
-        handleSelectType={handleSelectType}
-        selectedTypeIndex={selectedTypeIndex}
-      />
+      {/* sidebar */}
+      {isTypesLoading ? (
+        <SidebarSkeleton count={types.length} />
+      ) : (
+        <Sidebar
+          types={types}
+          handleSelectType={handleSelectType}
+          selectedTypeIndex={selectedTypeIndex}
+        />
+      )}
 
-      <TableContent
-        pokemonLists={pokemonLists?.pokemons}
-        selectedTypeName={selectedTypeName}
-        colorByType={selectedTypeName}
-        page={page}
-        perPage={perPage}
-        total={pokemonLists?.total || 0}
-        onPageChange={(newPage) => setPage(newPage)}
-        onPerPageChange={(newPerPage) => {
-          setPerPage(newPerPage)
-          setPage(1)
-        }}
-      />
+      {/* table content */}
+      {isPokemonLoading ? (
+        <TableContentSkeleton count={perPage} />
+      ) : (
+        <TableContent
+          pokemonLists={pokemonLists?.pokemons}
+          selectedTypeName={selectedTypeName}
+          colorByType={selectedTypeName}
+          page={page}
+          perPage={perPage}
+          total={pokemonLists?.total || 0}
+          onPageChange={(newPage) => setPage(newPage)}
+          onPerPageChange={(newPerPage) => {
+            setPerPage(newPerPage)
+            setPage(1)
+          }}
+        />
+      )}
     </Box>
   )
 }
