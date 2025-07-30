@@ -50,6 +50,7 @@ function Hero({ onScrollToPokedex }: HeroProps) {
           >
             <Image
               src={pokemonHero}
+              quality={20}
               alt="Starter Pokémon"
               layout="fill"
               objectFit="contain"
