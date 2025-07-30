@@ -16,6 +16,7 @@ import {
 } from '@mui/icons-material'
 import { useMemo } from 'react'
 import { formatNumberWithDot } from '@/app/lib/utils'
+import { typeColors } from '@/app/types'
 
 type PaginationProps = {
   page: number
@@ -24,6 +25,7 @@ type PaginationProps = {
   onPageChange: (page: number) => void
   onPerPageChange: (perPage: number) => void
   maxVisible?: number
+  colorByType?: string
 }
 
 function Pagination({
@@ -32,7 +34,8 @@ function Pagination({
   perPage,
   onPageChange,
   onPerPageChange,
-  maxVisible = 3
+  maxVisible = 3,
+  colorByType
 }: PaginationProps) {
   const totalPages = Math.ceil(total / perPage)
 
@@ -65,7 +68,12 @@ function Pagination({
       flexWrap="wrap"
       justifyContent="center"
     >
-      <Typography fontWeight="bold">Per Page :</Typography>
+      <Typography
+        fontWeight="bold"
+        color={colorByType ? typeColors[colorByType] : ''}
+      >
+        Per Page :
+      </Typography>
       <Select
         value={perPage}
         size="small"
@@ -101,7 +109,12 @@ function Pagination({
               padding: 0,
               borderRadius: '50%',
               color: p === page ? 'white' : 'text.primary',
-              bgcolor: p === page ? '#F57F17		' : 'transparent',
+              bgcolor:
+                p === page
+                  ? colorByType
+                    ? typeColors[colorByType]
+                    : '#f57f17'
+                  : 'transparent',
               '&:hover': {
                 bgcolor: p === page ? 'primary.dark' : 'action.hover'
               }
@@ -125,7 +138,10 @@ function Pagination({
         <LastPage />
       </IconButton>
 
-      <Typography fontWeight="bold">
+      <Typography
+        fontWeight="bold"
+        color={colorByType ? typeColors[colorByType] : ''}
+      >
         Total Data : {formatNumberWithDot(total)}
       </Typography>
     </Box>

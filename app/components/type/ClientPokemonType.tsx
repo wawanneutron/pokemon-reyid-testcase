@@ -58,7 +58,7 @@ function ClientPokemonType() {
         overflow: 'hidden'
       }}
     >
-      <AccentTypeBackground />
+      <AccentTypeBackground colorByType={selectedTypeName} />
 
       <Sidebar
         types={types}
@@ -69,6 +69,7 @@ function ClientPokemonType() {
       <TableContent
         pokemonLists={pokemonLists?.pokemons}
         selectedTypeName={selectedTypeName}
+        colorByType={selectedTypeName}
         page={page}
         perPage={perPage}
         total={pokemonLists?.total || 0}

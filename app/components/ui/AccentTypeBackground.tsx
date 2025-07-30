@@ -1,50 +1,44 @@
-import { Box } from '@mui/material'
-import accentleft from '@/public/round-type-left.png'
-import accentright from '@/public/round-type-right.png'
-import Image from 'next/image'
+'use client'
 
-function AccentTypeBackground() {
+import { typeColors } from '@/app/types'
+import { Box } from '@mui/material'
+
+type AccentTypeBackgroundProps = {
+  colorByType: string
+}
+
+function AccentTypeBackground({ colorByType }: AccentTypeBackgroundProps) {
   return (
     <>
-      {/* Background Left */}
+      {/* Left Circle Donut */}
       <Box
         sx={{
           position: 'absolute',
           left: -200,
-          bottom: 20,
-          width: 600,
-          height: 410,
-          zIndex: 0
+          bottom: 50,
+          width: 400,
+          height: 400,
+          zIndex: 0,
+          background: `radial-gradient(circle, transparent 40%, ${typeColors[colorByType]} 41%)`,
+          borderRadius: '50%',
+          opacity: 0.5
         }}
-      >
-        <Image
-          src={accentleft}
-          alt="Round blue acccent"
-          layout="fill"
-          objectFit="contain"
-          priority
-        />
-      </Box>
+      />
 
-      {/* Background Right */}
+      {/* Right Circle Donut */}
       <Box
         sx={{
           position: 'absolute',
           right: -200,
           top: 100,
-          width: 700,
-          height: 610,
-          zIndex: 0
+          width: 500,
+          height: 500,
+          zIndex: 0,
+          background: `radial-gradient(circle, transparent 40%, ${typeColors[colorByType]} 41%)`,
+          borderRadius: '50%',
+          opacity: 0.5
         }}
-      >
-        <Image
-          src={accentright}
-          alt="Round blue acccent"
-          layout="fill"
-          objectFit="contain"
-          priority
-        />
-      </Box>
+      />
     </>
   )
 }

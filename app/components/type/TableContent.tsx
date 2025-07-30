@@ -8,6 +8,7 @@ import Pagination from '../ui/Pagination'
 interface TableContantProps {
   pokemonLists: PokemonDetailed[] | undefined
   selectedTypeName: string
+  colorByType: string
   page: number
   perPage: number
   total: number
@@ -18,6 +19,7 @@ interface TableContantProps {
 function TableContent({
   pokemonLists,
   selectedTypeName,
+  colorByType,
   page,
   perPage,
   total,
@@ -28,7 +30,12 @@ function TableContent({
     <Box sx={{ flexGrow: 1, p: { xs: 1, md: 4 }, zIndex: 1 }}>
       <Typography variant="h5" fontWeight="bold" gutterBottom>
         Pokémon with Type{' '}
-        <span style={{ color: 'orange', textTransform: 'capitalize' }}>
+        <span
+          style={{
+            color: typeColors[colorByType],
+            textTransform: 'capitalize'
+          }}
+        >
           {selectedTypeName}
         </span>
       </Typography>
@@ -149,6 +156,7 @@ function TableContent({
             total={total}
             onPageChange={onPageChange}
             onPerPageChange={onPerPageChange}
+            colorByType={colorByType}
           />
         </Box>
       </Paper>
