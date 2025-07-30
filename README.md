@@ -83,6 +83,8 @@ yarn dev
 | Pagination + optimization    | 2 hours        |
 | **Total**                    | **\~12.5 hrs** |
 
+---
+
 ## 📬 Contact
 
 - 📧 Email: hellowawansetiawan@gmail.com
