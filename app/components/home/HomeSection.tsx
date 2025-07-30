@@ -28,7 +28,6 @@ function HomeSection() {
   const scrollToPokedex = () =>
     listRef.current?.scrollIntoView({ behavior: 'smooth' })
 
-  if (isLoading) return <CircularProgress />
   if (isError) return <Typography>Error loading data</Typography>
 
   return (

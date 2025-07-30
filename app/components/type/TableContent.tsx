@@ -2,6 +2,7 @@ import { typeColors } from '@/app/types'
 import { PokemonDetailed } from '@/app/types/detail'
 import { Box, Typography, Stack, Chip, Paper } from '@mui/material'
 import Image from 'next/image'
+import Link from 'next/link'
 
 interface ContentProps {
   pokemonLists?: {
@@ -89,16 +90,17 @@ function TableContent({ pokemonLists, selectedTypeName }: ContentProps) {
                   </Typography>
                   <Stack direction="row" gap={1} flexWrap="wrap">
                     {poke.types.map((type, tIdx) => (
-                      <Chip
-                        key={tIdx}
-                        label={type}
-                        sx={{
-                          bgcolor: typeColors[type],
-                          color: '#fff',
-                          fontWeight: 'bold',
-                          px: 1
-                        }}
-                      />
+                      <Link href={`/pokemon/type?name=${type}`} key={tIdx}>
+                        <Chip
+                          label={type}
+                          sx={{
+                            bgcolor: typeColors[type],
+                            color: '#fff',
+                            fontWeight: 'bold',
+                            px: 1
+                          }}
+                        />
+                      </Link>
                     ))}
                   </Stack>
                 </Box>
