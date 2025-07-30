@@ -4,7 +4,6 @@ import React, { useState } from 'react'
 import Hero from '@/app/components/home/Hero'
 import {
   Box,
-  Button,
   CircularProgress,
   Container,
   Grid,
