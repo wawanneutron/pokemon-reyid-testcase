@@ -17,11 +17,16 @@ import { usePokemonList } from '@/app/hooks/usePokemonList'
 import { formatNumberWithDot } from '@/app/lib/utils'
 import WelcomeMessage from './WelcomeMessage'
 import Loading from '@/app/loading'
+import { PokedexCardProps } from '@/app/types/home'
+import PokemonModal from '../detail/PokemonModal'
+import ErrorCard from './ErrorCard'
 
 function HomeSection() {
   const listRef = React.useRef<HTMLDivElement>(null)
-  const [page, setPage] = useState(1)
-  const [perPage, setPerPage] = useState(9)
+  const [page, setPage] = useState<number>(1)
+  const [perPage, setPerPage] = useState<number>(9)
+  const [selectedPokemon, setSelectedPokemon] =
+    useState<PokedexCardProps | null>(null)
 
   const { data, isLoading, isError, refetch } = usePokemonList(page, perPage)
 
@@ -31,8 +36,9 @@ function HomeSection() {
   if (isLoading) return <Loading />
 
   return (
-    <main>
+    <Container maxWidth={false} disableGutters>
       <Hero onScrollToPokedex={scrollToPokedex} />
+
       <Box
         sx={{
           position: 'relative',
@@ -64,38 +70,16 @@ function HomeSection() {
               <CircularProgress />
             </Box>
           ) : isError ? (
-            <Box
-              display="flex"
-              flexDirection="column"
-              alignItems="center"
-              justifyContent="center"
-              py={10}
-            >
-              <Typography
-                variant="h5"
-                color="error"
-                fontWeight="bold"
-                gutterBottom
-              >
-                Failed to load Pokémon
-              </Typography>
-              <Typography variant="body2" color="text.secondary" mb={2}>
-                Please check your connection or try again later.
-              </Typography>
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={() => refetch()}
-              >
-                Try again
-              </Button>
-            </Box>
+            <ErrorCard refetch={refetch} />
           ) : (
             <>
               <Grid container spacing={4} justifyContent="center">
                 {data?.pokemons.map((poke) => (
                   <Grid size={{ xs: 12, sm: 6, md: 4 }} key={poke.id}>
-                    <PokedexCard {...poke} />
+                    <PokedexCard
+                      {...poke}
+                      onSelect={(pokemon) => setSelectedPokemon(pokemon)}
+                    />
                   </Grid>
                 ))}
               </Grid>
@@ -108,7 +92,7 @@ function HomeSection() {
                   onPageChange={(newPage) => setPage(newPage)}
                   onPerPageChange={(newPerPage) => {
                     setPerPage(newPerPage)
-                    setPage(1) // reset ke halaman 1 saat ubah perPage
+                    setPage(1)
                   }}
                 />
               </Box>
@@ -117,8 +101,15 @@ function HomeSection() {
         </Container>
 
         <WelcomeMessage />
+        {selectedPokemon && (
+          <PokemonModal
+            open={!!selectedPokemon}
+            pokemon={selectedPokemon}
+            onClose={() => setSelectedPokemon(null)}
+          />
+        )}
       </Box>
-    </main>
+    </Container>
   )
 }
 
