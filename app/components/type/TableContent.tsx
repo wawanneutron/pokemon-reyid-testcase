@@ -4,6 +4,12 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Pagination from '../ui/Pagination'
 import { TableContantProps } from '@/app/types/pokemon-type'
+import styled from '@emotion/styled'
+
+const StyledTypeSelected = styled.span<{ colorByType: string }>`
+  color: ${({ colorByType }) => colorByType};
+  text-transform: capitalize;
+`
 
 function TableContent({
   pokemonLists,
@@ -19,14 +25,9 @@ function TableContent({
     <Box sx={{ flexGrow: 1, p: { xs: 1, md: 4 }, zIndex: 1 }}>
       <Typography variant="h5" fontWeight="bold" gutterBottom>
         Pokémon with Type{' '}
-        <span
-          style={{
-            color: typeColors[colorByType],
-            textTransform: 'capitalize'
-          }}
-        >
+        <StyledTypeSelected colorByType={typeColors[colorByType]}>
           {selectedTypeName}
-        </span>
+        </StyledTypeSelected>
       </Typography>
 
       <Paper
