@@ -40,13 +40,14 @@ yarn dev
 ## ✅ Features Implemented
 
 - 🏠 Welcome modal shown on first visit using `sessionStorage`
-- 📚 Browse Pokémon list with filters by type
+- 📚 Browse Pokémon list with pagination and filters by type
 - 🧬 View Pokémon evolution chains with navigation to each
 - 🔎 Fetch Pokémon details with pagination
 - 🌈 Type-based accent background and colors
 - 🌟 Responsive UI with Material UI components
 - 🔀 Reusable pagination hook and modular hooks for fetching data
 - 🔗 Dynamic routing with query params (e.g., `/pokemon/type?name=fire`)
+- 📈 SEO optimization with meta tags
 
 ---
 
