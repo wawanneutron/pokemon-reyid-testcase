@@ -89,6 +89,7 @@ function Navbar() {
                         fontWeight: isActive ? 'bold' : 'normal',
                         color: isActive ? 'primary.main' : 'text.primary',
                         borderBottom: isActive ? '2px solid #facc15' : 'none',
+                        textTransform: 'capitalize',
                         borderRadius: 0
                       }}
                     >
