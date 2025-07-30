@@ -12,7 +12,7 @@ import Image from 'next/image'
 import { typeColors } from '@/app/types/color'
 import { PokedexCardProps } from '@/app/types/home'
 
-export default function PokedexCard({
+function PokedexCard({
   id,
   name,
   weight,
@@ -89,3 +89,5 @@ export default function PokedexCard({
     </Card>
   )
 }
+
+export default PokedexCard
