@@ -1,5 +1,6 @@
 import { typeColors } from '@/app/types/color'
-import { Box, Typography, Stack, Chip, Paper } from '@mui/material'
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
+import { Box, Typography, Stack, Chip, Paper, Button } from '@mui/material'
 import Image from 'next/image'
 import Link from 'next/link'
 import Pagination from '../ui/Pagination'
@@ -77,7 +78,8 @@ function TableContent({
                     sx={{
                       display: 'grid',
                       gridTemplateColumns: {
-                        xs: '100px 1fr 1fr 1fr'
+                        xs: '100px 1fr 1fr 1fr 1fr',
+                        md: '250px 1fr 2fr 2fr 1fr'
                       },
                       alignItems: 'center',
                       gap: 2,
@@ -131,6 +133,26 @@ function TableContent({
                         </Link>
                       ))}
                     </Stack>
+                    <Button
+                      variant="outlined"
+                      endIcon={<ArrowForwardIosIcon fontSize="small" />}
+                      size="small"
+                      sx={{
+                        whiteSpace: 'nowrap',
+                        textTransform: 'none',
+                        fontWeight: 'bold',
+                        backgroundColor: typeColors[colorByType],
+                        borderColor: typeColors[colorByType],
+                        '&:hover': {
+                          backgroundColor: `${typeColors[colorByType]}50`,
+                          color: 'black'
+                        }
+                      }}
+                      component={Link}
+                      href={`/pokemon/${poke.id}`}
+                    >
+                      Detail
+                    </Button>
                   </Box>
                 ))
               )}
