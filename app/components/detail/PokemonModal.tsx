@@ -47,7 +47,7 @@ function PokemonModal({ open, onClose, pokemon }: PokemonModalProps) {
           <Grid size={{ xs: 12, md: 4 }}>
             <Box
               sx={{
-                bgcolor: '#e5e7eb',
+                bgcolor: '#F2F2F2',
                 height: '100%',
                 borderRadius: 1,
                 display: 'flex',

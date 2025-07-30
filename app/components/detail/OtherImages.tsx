@@ -16,7 +16,7 @@ function OtherImages({ images }: OtherImagesProps) {
                 position: 'relative',
                 width: 'auto',
                 height: 200,
-                bgcolor: '#ccc',
+                bgcolor: '#F2F2F2',
                 borderRadius: 1,
                 display: 'flex',
                 justifyContent: 'center',

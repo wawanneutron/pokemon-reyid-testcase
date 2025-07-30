@@ -14,7 +14,7 @@ function HeaderSummary({ pokemon }: HeaderSummaryProps) {
             position: 'relative',
             width: '100%',
             aspectRatio: '1/1',
-            bgcolor: '#ccc',
+            bgcolor: '#F2F2F2',
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',

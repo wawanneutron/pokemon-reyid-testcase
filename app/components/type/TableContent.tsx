@@ -91,7 +91,7 @@ function TableContent({
                       sx={{
                         width: 100,
                         height: 100,
-                        backgroundColor: '#ccc',
+                        backgroundColor: '#F2F2F2',
                         borderRadius: 2,
                         display: 'flex',
                         alignItems: 'center',
