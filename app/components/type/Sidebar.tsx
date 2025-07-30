@@ -1,11 +1,5 @@
 import { SidebarProps } from '@/app/types/pokemon-type'
-import {
-  Box,
-  List,
-  ListItemButton,
-  ListItemText,
-  Typography
-} from '@mui/material'
+import { Box, List, ListItemButton, Typography } from '@mui/material'
 import React from 'react'
 
 function Sidebar({ types, selectedTypeIndex, handleSelectType }: SidebarProps) {
@@ -15,10 +9,11 @@ function Sidebar({ types, selectedTypeIndex, handleSelectType }: SidebarProps) {
         backgroundColor: 'transparent',
         backdropFilter: 'blur(4px)',
         width: { xs: '100%', md: 240 },
-        p: 2
+        px: 2,
+        py: 4
       }}
     >
-      <Typography variant="subtitle1" fontWeight="bold" gutterBottom>
+      <Typography variant="inherit" fontWeight="bold" gutterBottom>
         Pokémon Type
       </Typography>
       <Box
@@ -41,7 +36,9 @@ function Sidebar({ types, selectedTypeIndex, handleSelectType }: SidebarProps) {
                 mb: 0.5
               }}
             >
-              <ListItemText primary={type.name} />
+              <Typography variant="button" textTransform="capitalize">
+                {type.name}
+              </Typography>
             </ListItemButton>
           ))}
         </List>
