@@ -8,9 +8,9 @@ import {
   Chip,
   CardActionArea
 } from '@mui/material'
-import Image from 'next/image'
 import { typeColors } from '@/app/types/color'
 import { PokedexCardProps } from '@/app/types/home'
+import Image from 'next/image'
 
 function PokedexCard({
   id,
@@ -38,7 +38,7 @@ function PokedexCard({
       >
         <Box
           sx={{
-            bgcolor: '#e5e7eb',
+            bgcolor: '#F2F2F2',
             height: 150,
             borderRadius: 2,
             mb: 2,
@@ -48,7 +48,22 @@ function PokedexCard({
           }}
         >
           {imageUrl ? (
-            <Image src={imageUrl} alt={name} width={120} height={120} />
+            <Box
+              sx={{
+                width: 200,
+                height: 200,
+                marginTop: 5,
+                zIndex: 99
+              }}
+            >
+              <Image
+                src={imageUrl}
+                alt={name}
+                width={200}
+                height={200}
+                loading="lazy"
+              />
+            </Box>
           ) : (
             <Typography variant="caption">
               Pokemon Picture Placeholder
@@ -56,7 +71,7 @@ function PokedexCard({
           )}
         </Box>
 
-        <CardContent sx={{ pt: 0 }}>
+        <CardContent sx={{ pt: 4 }}>
           <Typography variant="caption" color="text.secondary">
             #{id}
           </Typography>
