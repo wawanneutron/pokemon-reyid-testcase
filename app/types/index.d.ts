@@ -11,3 +11,12 @@ export interface PaginationProps {
   maxVisible?: number
   colorByType?: string
 }
+
+interface NavItem {
+  label: string
+  href: string
+}
+
+export interface NavbarMobileProps {
+  navItems: NavItem[]
+}
