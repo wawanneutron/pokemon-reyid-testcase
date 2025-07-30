@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import Hero from '@/app/components/home/Hero'
 import {
   Box,
+  Button,
   CircularProgress,
   Container,
   Grid,
@@ -15,20 +16,21 @@ import Pagination from '@/app/components/ui/Pagination'
 import { usePokemonList } from '@/app/hooks/usePokemonList'
 import { formatNumberWithDot } from '@/app/lib/utils'
 import WelcomeMessage from './WelcomeMessage'
+import Loading from '@/app/loading'
 
 function HomeSection() {
   const listRef = React.useRef<HTMLDivElement>(null)
   const [page, setPage] = useState(1)
   const [perPage, setPerPage] = useState(9)
 
-  const { data, isLoading, isError } = usePokemonList(page, perPage)
+  const { data, isLoading, isError, refetch } = usePokemonList(page, perPage)
 
   console.log(data)
 
   const scrollToPokedex = () =>
     listRef.current?.scrollIntoView({ behavior: 'smooth' })
 
-  if (isError) return <Typography>Error loading data</Typography>
+  if (isLoading) return <Loading />
 
   return (
     <main>
@@ -64,7 +66,32 @@ function HomeSection() {
               <CircularProgress />
             </Box>
           ) : isError ? (
-            <Typography color="error">Failed to load Pokémon</Typography>
+            <Box
+              display="flex"
+              flexDirection="column"
+              alignItems="center"
+              justifyContent="center"
+              py={10}
+            >
+              <Typography
+                variant="h5"
+                color="error"
+                fontWeight="bold"
+                gutterBottom
+              >
+                Failed to load Pokémon
+              </Typography>
+              <Typography variant="body2" color="text.secondary" mb={2}>
+                Please check your connection or try again later.
+              </Typography>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={() => refetch()}
+              >
+                Try again
+              </Button>
+            </Box>
           ) : (
             <>
               <Grid container spacing={4} justifyContent="center">
