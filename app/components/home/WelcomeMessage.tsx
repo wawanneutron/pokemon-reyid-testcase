@@ -12,7 +12,7 @@ import { useEffect, useState } from 'react'
 
 const WELCOME_MODAL_KEY = 'pokedex-welcome-session-dismissed'
 
-export default function WelcomeModal() {
+function WelcomeMessage() {
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
@@ -58,3 +58,5 @@ export default function WelcomeModal() {
     </Dialog>
   )
 }
+
+export default WelcomeMessage
