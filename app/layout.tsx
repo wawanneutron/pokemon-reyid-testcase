@@ -11,9 +11,32 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
-  title: 'Pokémon Landing Page',
+  title: {
+    template: '%s | Pokémon App Catalog',
+    default: 'Pokémon App Catalog'
+  },
   description:
-    'Explore the amazing world of Pokémon. Find your favorite Pokémon types, stats, and more!'
+    'Explore the amazing world of Pokémon. Find your favorite Pokémon types, stats, and more!',
+  keywords: ['Pokémon', 'Pokédex', 'Pokemon Types', 'Stats', 'Evolutions'],
+  authors: [{ name: 'Wawan Setiawan' }],
+  openGraph: {
+    title: 'Pokémon Catalog',
+    description:
+      'A beautifully designed Pokémon-themed landing page with type and stat info.',
+    url: 'https://pokemon-reyid.netlify.app',
+    siteName: 'Pokémon App',
+    images: [
+      {
+        url: 'https://pokemon-reyid.netlify.app/pokeball.png',
+        width: 1200,
+        height: 630,
+        alt: 'Pokémon Preview'
+      }
+    ],
+    locale: 'en_US',
+    type: 'website'
+  },
+  metadataBase: new URL('https://pokemon-reyid.netlify.app')
 }
 
 export default function RootLayout({
