@@ -9,10 +9,10 @@ import {
 } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close'
 import Link from 'next/link'
-import { typeColors } from '@/app/types'
 import Image from 'next/image'
 import { formatHeight, formatWeight } from '@/app/lib/utils'
 import { PokemonModalProps } from '@/app/types/detail'
+import { typeColors } from '@/app/types/color'
 
 function PokemonModal({ open, onClose, pokemon }: PokemonModalProps) {
   return (
@@ -109,7 +109,7 @@ function PokemonModal({ open, onClose, pokemon }: PokemonModalProps) {
                   <Chip
                     label={type}
                     sx={{
-                      bgcolor: getTypeColor(type),
+                      bgcolor: typeColors[type],
                       color: '#fff',
                       fontWeight: 'bold',
                       padding: '4px 10px'
@@ -135,7 +135,3 @@ function PokemonModal({ open, onClose, pokemon }: PokemonModalProps) {
 }
 
 export default PokemonModal
-
-function getTypeColor(type: string) {
-  return typeColors[type]
-}

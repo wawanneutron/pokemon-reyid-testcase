@@ -1,13 +1,9 @@
 import { formatHeight, formatWeight } from '@/app/lib/utils'
-import { typeColors } from '@/app/types'
-import { IPokemon } from '@/app/types/detail'
+import { typeColors } from '@/app/types/color'
+import { HeaderSummaryProps } from '@/app/types/detail'
 import { Box, Chip, Grid, Stack, Typography } from '@mui/material'
 import Image from 'next/image'
 import Link from 'next/link'
-
-type HeaderSummaryProps = {
-  pokemon: IPokemon
-}
 
 function HeaderSummary({ pokemon }: HeaderSummaryProps) {
   return (

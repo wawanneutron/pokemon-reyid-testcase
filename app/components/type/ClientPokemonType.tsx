@@ -11,10 +11,10 @@ import TableContent from './TableContent'
 
 function ClientPokemonType() {
   const { data: types = [] } = usePokemonTypes()
-  const [selectedTypeIndex, setSelectedTypeIndex] = useState(0)
+  const [selectedTypeIndex, setSelectedTypeIndex] = useState<number>(0)
 
-  const [page, setPage] = useState(1)
-  const [perPage, setPerPage] = useState(9)
+  const [page, setPage] = useState<number>(1)
+  const [perPage, setPerPage] = useState<number>(9)
 
   const searchParams = useSearchParams()
   const typeName = searchParams.get('name') ?? 'normal'

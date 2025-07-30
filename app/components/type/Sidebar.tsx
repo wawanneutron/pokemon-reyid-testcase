@@ -1,3 +1,4 @@
+import { SidebarProps } from '@/app/types/pokemon-type'
 import {
   Box,
   List,
@@ -6,12 +7,6 @@ import {
   Typography
 } from '@mui/material'
 import React from 'react'
-
-interface SidebarProps {
-  types: { name: string }[]
-  selectedTypeIndex: number
-  handleSelectType: (index: number) => void
-}
 
 function Sidebar({ types, selectedTypeIndex, handleSelectType }: SidebarProps) {
   return (

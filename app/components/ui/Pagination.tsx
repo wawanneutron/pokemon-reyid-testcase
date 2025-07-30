@@ -16,17 +16,8 @@ import {
 } from '@mui/icons-material'
 import { useMemo } from 'react'
 import { formatNumberWithDot } from '@/app/lib/utils'
-import { typeColors } from '@/app/types'
-
-type PaginationProps = {
-  page: number
-  total: number
-  perPage: number
-  onPageChange: (page: number) => void
-  onPerPageChange: (perPage: number) => void
-  maxVisible?: number
-  colorByType?: string
-}
+import { typeColors } from '@/app/types/color'
+import { PaginationProps } from '@/app/types'
 
 function Pagination({
   page,

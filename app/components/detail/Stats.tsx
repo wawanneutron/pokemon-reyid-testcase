@@ -1,4 +1,4 @@
-import { colorMap } from '@/app/types'
+import { colorMap } from '@/app/types/color'
 import { StateProps } from '@/app/types/detail'
 import { Box, Grid, Typography } from '@mui/material'
 

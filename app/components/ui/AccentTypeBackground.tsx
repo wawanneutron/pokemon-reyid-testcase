@@ -1,16 +1,13 @@
 'use client'
 
-import { typeColors } from '@/app/types'
+import { AccentTypeBackgroundProps } from '@/app/types'
+import { typeColors } from '@/app/types/color'
 import { Box } from '@mui/material'
-
-type AccentTypeBackgroundProps = {
-  colorByType: string
-}
 
 function AccentTypeBackground({ colorByType }: AccentTypeBackgroundProps) {
   return (
     <>
-      {/* Left Circle Donut */}
+      {/* Left Circle */}
       <Box
         sx={{
           position: 'absolute',
@@ -25,7 +22,7 @@ function AccentTypeBackground({ colorByType }: AccentTypeBackgroundProps) {
         }}
       />
 
-      {/* Right Circle Donut */}
+      {/* Right Circle */}
       <Box
         sx={{
           position: 'absolute',

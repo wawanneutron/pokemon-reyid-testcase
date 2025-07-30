@@ -1,20 +1,9 @@
-import { typeColors } from '@/app/types'
-import { PokemonDetailed } from '@/app/types/detail'
+import { typeColors } from '@/app/types/color'
 import { Box, Typography, Stack, Chip, Paper } from '@mui/material'
 import Image from 'next/image'
 import Link from 'next/link'
 import Pagination from '../ui/Pagination'
-
-interface TableContantProps {
-  pokemonLists: PokemonDetailed[] | undefined
-  selectedTypeName: string
-  colorByType: string
-  page: number
-  perPage: number
-  total: number
-  onPageChange: (newPage: number) => void
-  onPerPageChange: (newPerPage: number) => void
-}
+import { TableContantProps } from '@/app/types/pokemon-type'
 
 function TableContent({
   pokemonLists,

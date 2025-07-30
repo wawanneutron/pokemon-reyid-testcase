@@ -3,10 +3,7 @@ import { Box, Button, Container, Typography } from '@mui/material'
 import Image from 'next/image'
 
 import pokemonHero from '@/public/pokemon-hero.png'
-
-type HeroProps = {
-  onScrollToPokedex: () => void
-}
+import { HeroProps } from '@/app/types/home'
 
 function Hero({ onScrollToPokedex }: HeroProps) {
   return (

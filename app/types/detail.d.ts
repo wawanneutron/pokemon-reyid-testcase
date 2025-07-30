@@ -23,7 +23,7 @@ interface PokemonSpecies {
   url: string
 }
 
-export interface IPokemon {
+export interface Pokemon {
   id: string
   name: string
   weight: number
@@ -44,7 +44,15 @@ export interface StateProps {
 export interface PokemonModalProps {
   open: boolean
   onClose: () => void
-  pokemon: IPokemon
+  pokemon: Pokemon
+}
+
+export type HeaderSummaryProps = {
+  pokemon: Pokemon
+}
+
+export type EvolutionsProps = {
+  speciesUrl: string
 }
 
 // evolutions

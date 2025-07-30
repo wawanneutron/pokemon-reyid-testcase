@@ -3,14 +3,11 @@
 import React from 'react'
 import { Box, Stack, Typography, CircularProgress } from '@mui/material'
 import ArrowForwardRoundedIcon from '@mui/icons-material/ArrowForwardRounded'
-import { colorMap } from '@/app/types'
 import Image from 'next/image'
 import { usePokemonEvolutions } from '@/app/hooks/usePokemonEvolution'
 import { useRouter } from 'next/navigation'
-
-type EvolutionsProps = {
-  speciesUrl: string
-}
+import { colorMap } from '@/app/types/color'
+import { EvolutionsProps } from '@/app/types/detail'
 
 function Evolutions({ speciesUrl }: EvolutionsProps) {
   const { data, isLoading, isError } = usePokemonEvolutions(speciesUrl)
