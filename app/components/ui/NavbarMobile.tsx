@@ -1,12 +1,4 @@
-import {
-  Box,
-  Button,
-  Drawer,
-  IconButton,
-  List,
-  ListItem,
-  ListItemText
-} from '@mui/material'
+import { Box, Button, Drawer, IconButton, List } from '@mui/material'
 
 import Link from 'next/link'
 import React from 'react'
