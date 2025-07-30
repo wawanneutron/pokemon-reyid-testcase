@@ -3,15 +3,27 @@ import { PokemonDetailed } from '@/app/types/detail'
 import { Box, Typography, Stack, Chip, Paper } from '@mui/material'
 import Image from 'next/image'
 import Link from 'next/link'
+import Pagination from '../ui/Pagination'
 
-interface ContentProps {
-  pokemonLists?: {
-    data: PokemonDetailed[]
-  }
+interface TableContantProps {
+  pokemonLists: PokemonDetailed[] | undefined
   selectedTypeName: string
+  page: number
+  perPage: number
+  total: number
+  onPageChange: (newPage: number) => void
+  onPerPageChange: (newPerPage: number) => void
 }
 
-function TableContent({ pokemonLists, selectedTypeName }: ContentProps) {
+function TableContent({
+  pokemonLists,
+  selectedTypeName,
+  page,
+  perPage,
+  total,
+  onPageChange,
+  onPerPageChange
+}: TableContantProps) {
   return (
     <Box sx={{ flexGrow: 1, p: 2, zIndex: 1 }}>
       <Typography variant="h5" fontWeight="bold" gutterBottom>
@@ -29,12 +41,22 @@ function TableContent({ pokemonLists, selectedTypeName }: ContentProps) {
           backgroundColor: 'rgba(255, 255, 255, 0.85)',
           backdropFilter: 'blur(4px)',
           maxWidth: '100%',
-          overflowX: 'auto'
+          overflow: 'hidden',
+          display: 'flex',
+          flexDirection: 'column',
+          maxHeight: '80vh'
         }}
       >
-        <Box sx={{ minWidth: 600 }}>
+        <Box
+          sx={{
+            minWidth: 600,
+            overflowY: 'auto',
+            pr: 1,
+            flex: 1
+          }}
+        >
           <Stack spacing={2}>
-            {pokemonLists?.data.length === 0 ? (
+            {pokemonLists?.length === 0 ? (
               <Typography
                 variant="body1"
                 color="text.secondary"
@@ -43,7 +65,7 @@ function TableContent({ pokemonLists, selectedTypeName }: ContentProps) {
                 No Pokémon found for this type.
               </Typography>
             ) : (
-              pokemonLists?.data.map((poke, idx) => (
+              pokemonLists?.map((poke, idx) => (
                 <Box
                   key={idx}
                   sx={{
@@ -107,6 +129,17 @@ function TableContent({ pokemonLists, selectedTypeName }: ContentProps) {
               ))
             )}
           </Stack>
+        </Box>
+
+        {/* pagination */}
+        <Box mt={6} display="flex" justifyContent="center">
+          <Pagination
+            page={page}
+            perPage={perPage}
+            total={total}
+            onPageChange={onPageChange}
+            onPerPageChange={onPerPageChange}
+          />
         </Box>
       </Paper>
     </Box>

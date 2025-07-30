@@ -24,18 +24,21 @@ const getPokemonDetails = async (url: string): Promise<PokemonDetailed> => {
 
 export const usePokemonsByTypeWithDetails = (
   type: string,
-  offset: number,
-  limit: number
+  page: number,
+  perPage: number
 ) => {
+  const offset = (page - 1) * perPage
+
   return useQuery({
-    queryKey: ['pokemons-by-type', type, offset, limit],
+    queryKey: ['pokemons-by-type', type, page, perPage],
     queryFn: async () => {
       const res = await axios.get<PokemonTypeResponse>(
         `https://pokeapi.co/api/v2/type/${type}`
       )
+
       const allPokemon: PokemonBasic[] = res.data.pokemon.map((p) => p.pokemon)
 
-      const paginated = allPokemon.slice(offset, offset + limit)
+      const paginated = allPokemon.slice(offset, offset + perPage)
 
       const detailed = await Promise.all(
         paginated.map((p) => getPokemonDetails(p.url))
@@ -43,7 +46,7 @@ export const usePokemonsByTypeWithDetails = (
 
       return {
         total: allPokemon.length,
-        data: detailed
+        pokemons: detailed
       }
     },
     staleTime: 1000 * 60 * 5
