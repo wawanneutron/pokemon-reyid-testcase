@@ -16,11 +16,11 @@ interface SidebarProps {
 function Sidebar({ types, selectedTypeIndex, handleSelectType }: SidebarProps) {
   return (
     <Box
-      p={2}
       sx={{
-        backgroundColor: 'rgba(255, 255, 255, 0.85)',
+        backgroundColor: 'transparent',
         backdropFilter: 'blur(4px)',
-        width: { xs: '100%', md: 240 }
+        width: { xs: '100%', md: 240 },
+        p: 2
       }}
     >
       <Typography variant="subtitle1" fontWeight="bold" gutterBottom>
