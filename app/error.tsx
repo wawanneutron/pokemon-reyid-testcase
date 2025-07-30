@@ -1,6 +1,7 @@
 'use client'
 
 import { Box, Button, Typography } from '@mui/material'
+import LogoPokemon from './components/ui/LogoPokemon'
 
 type ErrorProps = {
   error: Error & { digest?: string }
@@ -27,7 +28,9 @@ export default function Error({ error, reset }: ErrorProps) {
         p: 2
       }}
     >
-      <Typography variant="h3" mb={2} fontWeight="bold" color="error">
+      <LogoPokemon width={200} height={80} />
+
+      <Typography variant="h3" my={2} fontWeight="bold" color="error">
         Uppss...
       </Typography>
       <Typography variant="h4" fontWeight="bold" color="error">

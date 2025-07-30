@@ -3,6 +3,7 @@
 import { Box, keyframes, Typography } from '@mui/material'
 import Image from 'next/image'
 import pokemonBall from '@/public/pokeball.png'
+import LogoPokemon from './components/ui/LogoPokemon'
 
 const spin = keyframes`
   0% { transform: rotate(0deg); }
@@ -44,6 +45,9 @@ export default function Loading() {
           style={{ objectFit: 'cover' }}
         />
       </Box>
+
+      <LogoPokemon disableLink width={200} height={80} />
+
       <Typography mt={2} fontWeight="bold" color="text.secondary">
         Loading Pokémon...
       </Typography>

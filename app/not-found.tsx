@@ -2,6 +2,7 @@
 
 import { Box, Button, Typography } from '@mui/material'
 import { usePathname, useRouter } from 'next/navigation'
+import LogoPokemon from './components/ui/LogoPokemon'
 
 export default function NotFound() {
   const router = useRouter()
@@ -26,6 +27,8 @@ export default function NotFound() {
         p: 2
       }}
     >
+      <LogoPokemon disableLink width={200} height={80} />
+
       <Typography variant="h1" fontWeight="bold" color="error">
         404
       </Typography>

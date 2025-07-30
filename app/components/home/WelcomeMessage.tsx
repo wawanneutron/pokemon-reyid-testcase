@@ -9,6 +9,7 @@ import {
   Button
 } from '@mui/material'
 import { useEffect, useState } from 'react'
+import LogoPokemon from '../ui/LogoPokemon'
 
 const WELCOME_MODAL_KEY = 'pokedex-welcome-session-dismissed'
 
@@ -38,6 +39,8 @@ function WelcomeMessage() {
       }}
       sx={{ backgroundColor: 'rgba(0, 0, 0, 0.4)' }}
     >
+      <LogoPokemon disableLink />
+
       <DialogTitle>Welcome to Pokédex! 👋👋</DialogTitle>
       <DialogContent>
         <DialogContentText>
