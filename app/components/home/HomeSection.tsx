@@ -25,8 +25,6 @@ function HomeSection() {
 
   const { data, isLoading, isError, refetch } = usePokemonList(page, perPage)
 
-  console.log(data)
-
   const scrollToPokedex = () =>
     listRef.current?.scrollIntoView({ behavior: 'smooth' })
 

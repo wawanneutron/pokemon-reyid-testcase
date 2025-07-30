@@ -34,8 +34,6 @@ function Navbar() {
 
   const [drawerOpen, setDrawerOpen] = useState(false)
 
-  console.log(pathname)
-
   const toggleDrawer = (open: boolean) => () => {
     setDrawerOpen(open)
   }
