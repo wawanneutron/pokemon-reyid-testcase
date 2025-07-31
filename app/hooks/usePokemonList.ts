@@ -23,7 +23,8 @@ export const usePokemonList = (page: number, limit: number) => {
           const data = detail.data
 
           return {
-            id: data.id.toString().padStart(3, '0'),
+            id: data.id,
+            displayId: data.id.toString().padStart(3, '0'),
             name: data.name,
             types: data.types.map(
               (t: { type: { name: string } }) => t.type.name

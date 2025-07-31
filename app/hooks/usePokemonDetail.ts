@@ -23,7 +23,8 @@ export const usePokemonDetail = (pokemonNameId: string | number) => {
       ].filter(Boolean)
 
       return {
-        id: data.id.toString().padStart(3, '0'),
+        id: data.id,
+        displayId: data.id.toString().padStart(3, '0'),
         name: data.name,
         types: data.types.map((t: { type: { name: string } }) => t.type.name),
         imageUrl: otherSprites['official-artwork']?.front_default,
