@@ -48,6 +48,7 @@ yarn dev
 - 🔀 Reusable pagination hook and modular hooks for fetching data
 - 🔗 Dynamic routing with query params (e.g., `/pokemon/type?name=fire`)
 - 📈 SEO optimization with meta tags
+- ⚖️ Compare Pokémon feature to view multiple Pokémon side by side
 
 ---
 
