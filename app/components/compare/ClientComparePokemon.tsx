@@ -1,12 +1,12 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { Box, Button, Stack, Snackbar, Alert, Container } from '@mui/material'
-import DeleteIcon from '@mui/icons-material/Delete'
+import { Box, Stack, Snackbar, Alert, Container } from '@mui/material'
 import PokemonSelectModal from '@/app/components/compare/PokemonSelectModal'
 import CompareCard from '@/app/components/compare/CompareCard'
 import { PokemonListItem } from '@/app/types/detail'
 import AccentTypeBackground from '../ui/AccentTypeBackground'
+import ButtonAction from './ButtonAction'
 
 const STORAGE_KEY = 'selectedPokemons'
 
@@ -60,42 +60,11 @@ export default function ComparePage() {
       )}
 
       <Stack spacing={2}>
-        <Box
-          display="flex"
-          flexWrap="wrap"
-          justifyContent="space-between"
-          alignItems="center"
-          gap={2}
-        >
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={() => setModalOpen(true)}
-          >
-            Add Pokémon to Compare
-          </Button>
-
-          {selectedPokemons.length > 0 && (
-            <Button
-              variant="outlined"
-              endIcon={<DeleteIcon fontSize="small" />}
-              sx={{
-                whiteSpace: 'nowrap',
-                textTransform: 'none',
-                backgroundColor: '#f44336',
-                borderColor: '#f44336',
-                zIndex: 2,
-                '&:hover': {
-                  backgroundColor: '#f44336bf',
-                  color: 'black'
-                }
-              }}
-              onClick={removeAll}
-            >
-              Remove All
-            </Button>
-          )}
-        </Box>
+        <ButtonAction
+          onModalOpen={() => setModalOpen(true)}
+          onConfirmRemove={removeAll}
+          selectedPokemons={selectedPokemons}
+        />
 
         <Box
           display="flex"
