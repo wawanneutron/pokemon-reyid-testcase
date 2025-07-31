@@ -1,12 +1,20 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { Box, Stack, Snackbar, Alert, Container } from '@mui/material'
+import {
+  Box,
+  Stack,
+  Snackbar,
+  Alert,
+  Container,
+  Typography
+} from '@mui/material'
 import PokemonSelectModal from '@/app/components/compare/PokemonSelectModal'
 import CompareCard from '@/app/components/compare/CompareCard'
 import { PokemonListItem } from '@/app/types/detail'
 import AccentTypeBackground from '../ui/AccentTypeBackground'
 import ButtonAction from './ButtonAction'
+import LogoPokemon from '../ui/LogoPokemon'
 
 const STORAGE_KEY = 'selectedPokemons'
 
@@ -82,14 +90,32 @@ export default function ComparePage() {
             }
           }}
         >
-          {selectedPokemons.map((pokemon) => (
-            <Box key={pokemon.id} minWidth={250} flexShrink={0}>
-              <CompareCard
-                pokemon={pokemon}
-                onRemove={() => removePokemon(pokemon.id)}
-              />
+          {!!selectedPokemons.length ? (
+            selectedPokemons.map((pokemon) => (
+              <Box key={pokemon.id} minWidth={250} flexShrink={0}>
+                <CompareCard
+                  pokemon={pokemon}
+                  onRemove={() => removePokemon(pokemon.id)}
+                />
+              </Box>
+            ))
+          ) : (
+            <Box
+              width="100%"
+              py={8}
+              display="flex"
+              gap={2}
+              flexDirection="column"
+              justifyContent="center"
+              alignItems="center"
+            >
+              <LogoPokemon width={200} height={100} disableLink />
+              <Typography variant="body1" color="text.secondary">
+                No Pokémon selected. Click &quot;Add Pokémon to Compare&quot; to
+                get started!
+              </Typography>
             </Box>
-          ))}
+          )}
         </Box>
       </Stack>
 
