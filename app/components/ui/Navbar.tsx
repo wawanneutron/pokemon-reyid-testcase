@@ -18,7 +18,8 @@ function Navbar() {
 
   const navItems = [
     { label: 'Home', href: '/' },
-    { label: 'Pokemon Type', href: '/pokemon/type?name=normal' }
+    { label: 'Pokemon Type', href: '/pokemon/type?name=normal' },
+    { label: 'Compare Pokémon', href: '/pokemon/compare' }
   ]
 
   return (
