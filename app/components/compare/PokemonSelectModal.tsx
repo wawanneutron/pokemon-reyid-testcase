@@ -82,7 +82,7 @@ export default function PokemonSelectModal({
           <>
             <Grid container spacing={2}>
               {pokemonList?.pokemons?.map((poke) => (
-                <Grid size={{ xs: 6, sm: 4, md: 4 }} key={poke.id}>
+                <Grid size={{ xs: 12, sm: 4, md: 4 }} key={poke.id}>
                   <PokedexCard
                     {...poke}
                     onSelect={(pokeItem) => onSelectPokemon(pokeItem)}
