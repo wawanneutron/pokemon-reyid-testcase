@@ -1,17 +1,37 @@
 'use client'
 
-import { useState } from 'react'
-import { Box, Button, Stack, Snackbar, Alert } from '@mui/material'
+import { useEffect, useState } from 'react'
+import { Box, Button, Stack, Snackbar, Alert, Container } from '@mui/material'
+import DeleteIcon from '@mui/icons-material/Delete'
 import PokemonSelectModal from '@/app/components/compare/PokemonSelectModal'
 import CompareCard from '@/app/components/compare/CompareCard'
 import { PokemonListItem } from '@/app/types/detail'
+import AccentTypeBackground from '../ui/AccentTypeBackground'
+
+const STORAGE_KEY = 'selectedPokemons'
 
 export default function ComparePage() {
   const [selectedPokemons, setSelectedPokemons] = useState<PokemonListItem[]>(
-    []
+    () => {
+      if (typeof window !== 'undefined') {
+        try {
+          const saved = localStorage.getItem('selectedPokemons')
+          return saved ? JSON.parse(saved) : []
+        } catch (error) {
+          console.error('Failed to saved pokemons', error)
+        }
+      }
+      return []
+    }
   )
+
   const [modalOpen, setModalOpen] = useState(false)
   const [duplicateOpen, setDuplicateOpen] = useState(false)
+
+  // Simpan ke localStorage setiap kali berubah
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(selectedPokemons))
+  }, [selectedPokemons])
 
   const handleAddPokemon = async (pokemonItem: PokemonListItem) => {
     const alreadyExists = selectedPokemons.some((p) => p.id === pokemonItem.id)
@@ -29,17 +49,53 @@ export default function ComparePage() {
     setSelectedPokemons((prev) => prev.filter((p) => p.id !== id))
   }
 
+  const removeAll = () => {
+    setSelectedPokemons([])
+  }
+
   return (
-    <Box p={2}>
+    <Container maxWidth="xl" sx={{ px: { xs: 1, md: 12 }, py: 8 }}>
+      {!!selectedPokemons.length && (
+        <AccentTypeBackground colorByType="poison" />
+      )}
+
       <Stack spacing={2}>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={() => setModalOpen(true)}
-          sx={{ alignSelf: 'flex-start' }}
+        <Box
+          display="flex"
+          flexWrap="wrap"
+          justifyContent="space-between"
+          alignItems="center"
+          gap={2}
         >
-          Add Pokémon to Compare
-        </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => setModalOpen(true)}
+          >
+            Add Pokémon to Compare
+          </Button>
+
+          {selectedPokemons.length > 0 && (
+            <Button
+              variant="outlined"
+              endIcon={<DeleteIcon fontSize="small" />}
+              sx={{
+                whiteSpace: 'nowrap',
+                textTransform: 'none',
+                backgroundColor: '#f44336',
+                borderColor: '#f44336',
+                zIndex: 2,
+                '&:hover': {
+                  backgroundColor: '#f44336bf',
+                  color: 'black'
+                }
+              }}
+              onClick={removeAll}
+            >
+              Remove All
+            </Button>
+          )}
+        </Box>
 
         <Box
           display="flex"
@@ -89,6 +145,6 @@ export default function ComparePage() {
           This Pokémon has already been selected!
         </Alert>
       </Snackbar>
-    </Box>
+    </Container>
   )
 }
