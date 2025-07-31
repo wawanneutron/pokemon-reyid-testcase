@@ -4,13 +4,14 @@ type Abilities = {
 }
 
 export interface PokedexCardProps {
-  id: string
+  id: number
+  displayId: string
   name: string
   weight: number
   height: number
   types: string[]
   abilities: Abilities[]
-  imageUrl?: string
+  imageUrl: string
   onSelect?: (pokemon: PokedexCardProps) => void
 }
 

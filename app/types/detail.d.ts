@@ -24,7 +24,7 @@ interface PokemonSpecies {
 }
 
 export interface Pokemon {
-  id: string
+  id: number
   name: string
   weight: number
   height: number
@@ -74,7 +74,8 @@ export interface EvolutionChainResponse {
 }
 
 export interface PokemonDetail {
-  id: string
+  id: number
+  displayId: string
   name: string
   types: string[]
   imageUrl: string
@@ -92,13 +93,15 @@ interface PokemonAbility {
 }
 
 export interface PokemonListItem {
-  id: string
+  id: number
+  displayId: string
   name: string
   types: string[]
   weight: number
   height: number
   imageUrl: string
   abilities: PokemonAbility[]
+  onSelect?: (pokemon: PokedexCardProps) => void
 }
 
 export interface UsePokemonListResult {
