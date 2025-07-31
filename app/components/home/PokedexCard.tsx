@@ -14,6 +14,7 @@ import Image from 'next/image'
 
 function PokedexCard({
   id,
+  displayId,
   name,
   weight,
   height,
@@ -33,7 +34,16 @@ function PokedexCard({
     >
       <CardActionArea
         onClick={() =>
-          onSelect?.({ id, name, weight, height, types, abilities, imageUrl })
+          onSelect?.({
+            id,
+            displayId,
+            name,
+            weight,
+            height,
+            types,
+            abilities,
+            imageUrl
+          })
         }
       >
         <Box
@@ -73,7 +83,7 @@ function PokedexCard({
 
         <CardContent sx={{ pt: 4 }}>
           <Typography variant="caption" color="text.secondary">
-            #{id}
+            #{displayId}
           </Typography>
           <Typography variant="h6" fontWeight="bold" gutterBottom>
             {name}
