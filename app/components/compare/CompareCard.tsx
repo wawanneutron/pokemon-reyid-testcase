@@ -15,6 +15,7 @@ import CloseIcon from '@mui/icons-material/Close'
 import { typeColors } from '@/app/types/color'
 import { PokemonCompareItem } from '@/app/types/compare'
 import Link from 'next/link'
+import { formatHeight, formatWeight } from '@/app/lib/utils'
 
 interface CompareCardProps {
   pokemon: PokemonCompareItem
@@ -72,8 +73,12 @@ function CompareCard({ pokemon, onRemove }: CompareCardProps) {
             <Typography variant="h5" sx={{ textTransform: 'capitalize' }}>
               {pokemon.name}
             </Typography>
-            <Typography variant="body2">Weight: {pokemon.weight}</Typography>
-            <Typography variant="body2">Height: {pokemon.height}</Typography>
+            <Typography variant="body2">
+              Weight: {formatWeight(pokemon.weight)}
+            </Typography>
+            <Typography variant="body2">
+              Height: {formatHeight(pokemon.height)}
+            </Typography>
 
             <ul>
               <Typography variant="body1" fontWeight="bold">
