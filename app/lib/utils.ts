@@ -24,3 +24,7 @@ export function formatWeight(weightHecto: number) {
 
   return `${kg.toFixed(1)} kg (${lbs.toFixed(1)} lbs)`
 }
+
+export function convertSlugToText(slug: string): string {
+  return slug.replace(/-/g, ' ')
+}
