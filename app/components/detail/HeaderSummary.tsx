@@ -1,4 +1,4 @@
-import { formatHeight, formatWeight } from '@/app/lib/utils'
+import { convertSlugToText, formatHeight, formatWeight } from '@/app/lib/utils'
 import { typeColors } from '@/app/types/color'
 import { HeaderSummaryProps } from '@/app/types/detail'
 import { Box, Chip, Grid, Stack, Typography } from '@mui/material'
@@ -19,7 +19,6 @@ function HeaderSummary({ pokemon }: HeaderSummaryProps) {
             justifyContent: 'center',
             alignItems: 'center',
             fontSize: 18,
-            color: '#fff',
             borderRadius: 2
           }}
         >
@@ -39,7 +38,7 @@ function HeaderSummary({ pokemon }: HeaderSummaryProps) {
           gutterBottom
           textTransform="capitalize"
         >
-          {pokemon.name}
+          {convertSlugToText(pokemon.name)}
         </Typography>
         <Grid container spacing={2}>
           <Grid size={{ xs: 6 }}>
