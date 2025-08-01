@@ -11,6 +11,7 @@ import {
 import { typeColors } from '@/app/types/color'
 import { PokedexCardProps } from '@/app/types/home'
 import Image from 'next/image'
+import { convertSlugToText } from '@/app/lib/utils'
 
 function PokedexCard({
   id,
@@ -33,6 +34,12 @@ function PokedexCard({
       }}
     >
       <CardActionArea
+        sx={{
+          height: 300,
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between'
+        }}
         onClick={() =>
           onSelect?.({
             id,
@@ -49,8 +56,10 @@ function PokedexCard({
         <Box
           sx={{
             bgcolor: '#F2F2F2',
+            width: '100%',
             height: 150,
-            borderRadius: 2,
+            borderTopLeftRadius: '12px',
+            borderTopRightRadius: '12px',
             mb: 2,
             display: 'flex',
             alignItems: 'center',
@@ -62,8 +71,7 @@ function PokedexCard({
               sx={{
                 width: 200,
                 height: 200,
-                marginTop: 5,
-                zIndex: 99
+                marginTop: 5
               }}
             >
               <Image
@@ -81,12 +89,17 @@ function PokedexCard({
           )}
         </Box>
 
-        <CardContent sx={{ pt: 4 }}>
+        <CardContent sx={{ pt: 1, width: '100%' }}>
           <Typography variant="caption" color="text.secondary">
             #{displayId}
           </Typography>
-          <Typography variant="h6" fontWeight="bold" gutterBottom>
-            {name}
+          <Typography
+            variant="h6"
+            fontWeight="bold"
+            textTransform="capitalize"
+            gutterBottom
+          >
+            {convertSlugToText(name)}
           </Typography>
           <Box
             sx={{
