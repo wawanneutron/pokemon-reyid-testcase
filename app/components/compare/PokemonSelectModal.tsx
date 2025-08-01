@@ -8,7 +8,8 @@ import {
   CircularProgress,
   Typography,
   Box,
-  Grid
+  Grid,
+  DialogActions
 } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close'
 import { useEffect, useState } from 'react'
@@ -79,31 +80,43 @@ export default function PokemonSelectModal({
             Error loading Pokémon. Please try again.
           </Typography>
         ) : (
-          <>
-            <Grid container spacing={2}>
-              {pokemonList?.pokemons?.map((poke) => (
-                <Grid size={{ xs: 12, sm: 4, md: 4 }} key={poke.id}>
-                  <PokedexCard
-                    {...poke}
-                    onSelect={(pokeItem) => onSelectPokemon(pokeItem)}
-                  />
-                </Grid>
-              ))}
-            </Grid>
-
-            <Pagination
-              page={page}
-              perPage={perPage}
-              total={pokemonList?.total || 0}
-              onPageChange={setPage}
-              onPerPageChange={(val) => {
-                setPage(1)
-                setPerPage(val)
-              }}
-            />
-          </>
+          <Grid container spacing={2}>
+            {pokemonList?.pokemons?.map((poke) => (
+              <Grid size={{ xs: 12, sm: 4, md: 4 }} key={poke.id}>
+                <PokedexCard
+                  {...poke}
+                  onSelect={(pokeItem) => onSelectPokemon(pokeItem)}
+                />
+              </Grid>
+            ))}
+          </Grid>
         )}
       </DialogContent>
+
+      {!isLoading && !isError && (
+        <DialogActions
+          sx={{
+            justifyContent: 'center',
+            position: 'sticky',
+            bottom: 0,
+            bgcolor: 'background.paper',
+            borderTop: '1px solid #ddd',
+            py: 2,
+            zIndex: 1
+          }}
+        >
+          <Pagination
+            page={page}
+            perPage={perPage}
+            total={pokemonList?.total || 0}
+            onPageChange={setPage}
+            onPerPageChange={(val) => {
+              setPage(1)
+              setPerPage(val)
+            }}
+          />
+        </DialogActions>
+      )}
     </Dialog>
   )
 }
