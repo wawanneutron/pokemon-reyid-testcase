@@ -11,11 +11,10 @@ function Hero({ onScrollToPokedex }: HeroProps) {
       <Box
         sx={{
           backgroundColor: '#fff',
-          minHeight: '100vh',
+          minHeight: '91vh',
           display: 'flex',
           alignItems: 'center',
-          px: { xs: 1, md: 12 },
-          py: 2
+          px: { xs: 1, md: 12 }
         }}
       >
         <Container
