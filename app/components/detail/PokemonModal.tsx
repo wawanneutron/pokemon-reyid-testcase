@@ -10,7 +10,7 @@ import {
 import CloseIcon from '@mui/icons-material/Close'
 import Link from 'next/link'
 import Image from 'next/image'
-import { formatHeight, formatWeight } from '@/app/lib/utils'
+import { convertSlugToText, formatHeight, formatWeight } from '@/app/lib/utils'
 import { PokemonModalProps } from '@/app/types/detail'
 import { typeColors } from '@/app/types/color'
 
@@ -29,7 +29,7 @@ function PokemonModal({ open, onClose, pokemon }: PokemonModalProps) {
           width: '90%',
           px: 4,
           pb: 4,
-          pt: 8,
+          pt: 4,
           mx: 'auto',
           my: '10%',
           position: 'relative',
@@ -38,13 +38,13 @@ function PokemonModal({ open, onClose, pokemon }: PokemonModalProps) {
       >
         <IconButton
           onClick={onClose}
-          sx={{ position: 'absolute', top: 16, right: 16 }}
+          sx={{ position: 'absolute', top: 5, right: 16 }}
         >
           <CloseIcon />
         </IconButton>
 
         <Grid container spacing={4}>
-          <Grid size={{ xs: 12, md: 4 }}>
+          <Grid size={{ xs: 12, md: 4 }} mt={2}>
             <Box
               sx={{
                 bgcolor: '#F2F2F2',
@@ -73,9 +73,14 @@ function PokemonModal({ open, onClose, pokemon }: PokemonModalProps) {
             </Box>
           </Grid>
 
-          <Grid size={{ xs: 12, md: 8 }}>
-            <Typography variant="h5" fontWeight="bold" gutterBottom>
-              {pokemon.name}
+          <Grid size={{ xs: 12, md: 8 }} pt={2}>
+            <Typography
+              variant="h5"
+              fontWeight="bold"
+              textTransform="capitalize"
+              gutterBottom
+            >
+              {convertSlugToText(pokemon.name)}
             </Typography>
 
             <Box display="flex" gap={8} mb={2}>
