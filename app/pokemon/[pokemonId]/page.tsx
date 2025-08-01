@@ -1,6 +1,6 @@
 'use client'
 
-import { notFound } from 'next/navigation'
+import { notFound, useParams } from 'next/navigation'
 import { Box, Container } from '@mui/material'
 import { usePokemonDetail } from '@/app/hooks/usePokemonDetail'
 
@@ -12,13 +12,12 @@ import Loading from '@/app/loading'
 import Error from '@/app/error'
 import axios from 'axios'
 
-export default function PokemonDetailPage({
-  params
-}: {
-  params: { pokemonId: number | string }
-}) {
+export default function PokemonDetailPage() {
+  const params = useParams()
+  const pokemonId = params.pokemonId
+
   const { data, isLoading, isError, error, refetch } = usePokemonDetail(
-    params.pokemonId
+    pokemonId as string | number
   )
 
   if (isLoading) return <Loading />
