@@ -15,17 +15,19 @@ import CloseIcon from '@mui/icons-material/Close'
 import { typeColors } from '@/app/types/color'
 import { PokemonCompareItem } from '@/app/types/compare'
 import { convertSlugToText, formatHeight, formatWeight } from '@/app/lib/utils'
+import { useRouter } from 'next/navigation'
 
 interface CompareCardProps {
   pokemon: PokemonCompareItem
   onRemove: () => void
 }
 
-const onDetailPokemon = (pokemonId: number) => {
-  if (pokemonId) window.location.href = `/pokemon/${pokemonId}`
-}
-
 function CompareCard({ pokemon, onRemove }: CompareCardProps) {
+  const router = useRouter()
+  const onDetailPokemon = (pokemonId: number) => {
+    if (pokemonId) router.push(`/pokemon/${pokemonId}`)
+  }
+
   return (
     <Card
       onClick={() => onDetailPokemon(pokemon.id)}
